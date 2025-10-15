@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Movimentação de Pessoal</title>
+    <link
+      type="text/css"
+      href="/portal/resources/style-guide/css/fluig-style-guide.min.css"
+      rel="stylesheet"
+    />
+    <link type="text/css" href="estilo.css" rel="stylesheet" />
+    <link type="text/css" href="jquery-ui.css" rel="stylesheet" />
+    <link type="text/css" href="jquery-ui.theme.css" rel="stylesheet" />
+    <link type="text/css" href="toastr.min.css" rel="stylesheet" />
+    <link type="text/css" href="jquery.timepicker.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <style>
+      .atividade-titulo {
+        cursor: pointer;
+      }
+      .ui-datepicker-trigger {
+        display: none;
+      }
+      #ID_LINK_MANUAL {
+        color: #5bc0de !important;
+      }
+    </style>
+    <meta charset="utf8" />
+  </head>
+  <body>
+    <div class="fluig-style-guide">
+      <form name="form" role="form">
+        <!-- SOLICITACAO DE FERIAS -->
+        <!-- DADOS DO SOLICITANTE -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <span class="fluigicon fluigicon-user fluigicon-lg"></span>
+              &nbsp;Dados do solicitante
+            </h3>
+          </div>
+          <div class="panel-body container">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"
+                      >N.Solicita&ccedil;&atilde;o:</span
+                    >
+                    <input
+                      type="text"
+                      readonly="readonly"
+                      class="form-control"
+                      name="cpNumeroSolicitacao"
+                      id="cpNumeroSolicitacao"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon">Data Abertura:</span>
+                    <input
+                      type="text"
+                      readonly="readonly"
+                      class="form-control"
+                      name="cpDataAbertura"
+                      id="cpDataAbertura"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon">Solicitante:</span>
+                    <input
+                      type="text"
+                      readonly="readonly"
+                      class="form-control"
+                      name="cpNomeSolicitante"
+                      id="cpNomeSolicitante"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon">Fun&ccedil;&atilde;o:</span>
+                    <input
+                      type="text"
+                      readonly="readonly"
+                      class="form-control"
+                      name="cpFuncaoSolicitante"
+                      id="cpFuncaoSolicitante"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon">Empresa:</span>
+                    <input
+                      type="text"
+                      readonly="readonly"
+                      class="form-control"
+                      name="cpEmpresaSolicitante"
+                      id="cpEmpresaSolicitante"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon">Departam./Obra:</span>
+                    <input
+                      type="text"
+                      readonly="readonly"
+                      class="form-control"
+                      name="cpDepartamentoObraSolicitante"
+                      id="cpDepartamentoObraSolicitante"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon">Email:</span>
+                    <input
+                      type="text"
+                      readonly="readonly"
+                      class="form-control"
+                      name="cpEmailSolicitante"
+                      id="cpEmailSolicitante"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon">Estado:</span>
+                    <input
+                      type="text"
+                      readonly="readonly"
+                      class="form-control"
+                      name="cpEstadoSolicitante"
+                      id="cpEstadoSolicitante"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- FIM - PANEL BODY - DADOS DO SOLICITANTE -->
+        </div>
+        <!-- Reabertura -->
+        <input type="hidden" name="cpLoginFluig" id="cpLoginFluig" />
+        <input
+          type="hidden"
+          name="cpMatriculaSolicitante"
+          id="cpMatriculaSolicitante"
+        />
+        <input
+          type="hidden"
+          name="cpSolicitanteColigada"
+          id="cpSolicitanteColigada"
+        />
+
+        <div class="panel panel-default" id="divReabertura">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <span class="fluigicon fluigicon-questions fluigicon-lg"></span>
+              &nbsp;Corre&ccedil;&atilde;o da Solicita&ccedil;&atilde;o
+            </h3>
+          </div>
+          <div class="panel-body container">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="labelField">Aprova&ccedil;&atilde;o</label>
+                  <select
+                    class="form-control"
+                    name="cpReaberturaChamado"
+                    id="cpReaberturaChamado"
+                    aprovacao
+                    obrigatorio
+                  >
+                    <option value=" ">Selecione...</option>
+                    <option value="1" data-status="success">
+                      Reenviar Chamado
+                    </option>
+                    <option value="2" data-status="success">Cancelar</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Parecer</label>
+                  <textarea
+                    rows="3"
+                    class="form-control"
+                    name="cpParecerReabertura"
+                    id="cpParecerReabertura"
+                    parecer
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- reabertura -->
+
+        <!-- DADOS DA SOLICITACAO -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <span
+                class="fluigicon fluigicon-pointer-right fluigicon-sm"
+              ></span>
+              &nbsp;Dados da Solicita&ccedil;&atilde;o
+            </h3>
+          </div>
+          <div class="panel-body container">
+            <!-- DADOS DO COLABORADOR -->
+            <h4>
+              <span
+                class="fluigicon fluigicon-pointer-right fluigicon-sm"
+              ></span
+              >Dados do Colaborador
+            </h4>
+            <div class="row">
+              <div class="col-md-6">
+                <input type="hidden" name="CodColigada" id="CodColigada" />
+                <div class="form-group">
+                  <label>Empresa</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      name="Empresa"
+                      id="Empresa"
+                      class="form-control"
+                      readonly
+                    />
+                    <div class="input-group-btn btnZoom" id="addEmpresa">
+                      <button class="btn btn-info">
+                        <span class="fluigicon fluigicon-search"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <input type="hidden" name="CodCentroCC" id="CodCentroCC" />
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Dpto/Obra</label>
+                  <input
+                    type="text"
+                    class="form-control clearPosCentroCusto"
+                    name="CentroCC"
+                    id="CentroCC"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Município da Seção</label>
+                  <input
+                    type="text"
+                    name="cpMuniSec"
+                    id="cpMuniSec"
+                    class="form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Estado da Seção</label>
+                  <input
+                    type="text"
+                    name="cpEstSecao"
+                    id="cpEstSecao"
+                    class="form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Nome do Colaborador</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      name="NomeColaborador"
+                      id="NomeColaborador"
+                      class="form-control"
+                      readonly
+                    />
+                    <div class="input-group-btn btnZoom" id="addNomCol">
+                      <button class="btn btn-info">
+                        <span class="fluigicon fluigicon-search"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Data da Admiss&atilde;o</label>
+                  <input
+                    type="text"
+                    name="DatadaAdmissao"
+                    id="DatadaAdmissao"
+                    class="form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Matr&iacute;cula</label>
+                  <input
+                    type="text"
+                    name="MatriculaCod"
+                    id="MatriculaCod"
+                    class="form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Gestor</label>
+                  <input
+                    type="text"
+                    name="Gestor"
+                    id="Gestor"
+                    class="form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+
+            <input type="hidden" id="TxtChapa" name="TxtChapa" />
+            <input type="hidden" id="CodPessoa" name="CodPessoa" />
+            <input type="hidden" id="TxtNomeCol" name="TxtNomeCol" />
+            <input type="hidden" id="DtLimitFer" name="DtLimitFer" />
+            <input type="hidden" id="txtCodSecaoOri" name="txtCodSecaoOri" />
+            <input type="hidden" id="txtSecOrig" name="txtSecOrig" />
+            <input type="hidden" id="txtDtAdm" name="txtDtAdm" />
+            <input type="hidden" id="txtMembCipaCod" name="txtMembCipaCod" />
+            <input type="hidden" id="CodTipo" name="CodTipo" />
+            <input type="hidden" id="CodCategoria" name="CodCategoria" />
+            <input type="hidden" id="txtSalOrigem" name="txtSalOrigem" />
+            <input type="hidden" id="TEMPRAZOCONTR" name="TEMPRAZOCONTR" />
+            <input type="hidden" id="FIMPRAZOCONTR" name="FIMPRAZOCONTR" />
+            <input type="hidden" id="NROFICHAREG" name="NROFICHAREG" />
+            <input type="hidden" id="CODRECEBIMENTO" name="CODRECEBIMENTO" />
+            <input type="hidden" id="IndiceAtual" name="IndiceAtual" />
+            <input
+              type="hidden"
+              id="CodFilialDestino"
+              name="CodFilialDestino"
+            />
+          </div>
+        </div>
+        <!-- DADOS DAS MOVIMENTACOES -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <span
+                class="fluigicon fluigicon-pointer-right fluigicon-sm"
+              ></span>
+              &nbsp;Dados das Movimenta&ccedil;&otilde;es
+            </h3>
+          </div>
+          <div class="panel-body container">
+            <!-- DADOS DO COLABORADOR -->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Data de Mudança</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      name="DataMudanca"
+                      id="DataMudanca"
+                      class="form-control"
+                      readonly
+                    />
+                    <span class="input-group-btn botao" id="addDtMudanca">
+                      <button type="button" class="btn btn-info">
+                        <span class="fluigicon fluigicon-calendar"></span>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h4>
+              <span class="fluigicon fluigicon-plus"></span>
+              &nbsp;Movimentações a serem feitas
+            </h4>
+            <div class="row">
+              <div class="col-md-2">
+                <input type="checkbox" id="Ckb1" name="Ckb1" />
+                <label>Seção</label>
+              </div>
+              <div class="col-md-2">
+                <input type="checkbox" id="Ckb2" name="Ckb2" />
+                <label>Função</label>
+              </div>
+              <div class="col-md-2">
+                <input type="checkbox" id="Ckb3" name="Ckb3" />
+                <label>Horário</label>
+              </div>
+              <div class="col-md-2">
+                <input type="checkbox" id="Ckb4" name="Ckb4" />
+                <label>Sindicato</label>
+              </div>
+              <div class="col-md-2">
+                <input type="checkbox" id="Ckb5" name="Ckb5" />
+                <label>Salário</label>
+              </div>
+            </div>
+            <h4 class="NovaSecao">
+              <span
+                class="fluigicon fluigicon-pointer-right fluigicon-sm"
+              ></span>
+              Nova Seção
+            </h4>
+            <div class="row NovaSecao">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Código da Nova Seção</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      name="CodNovaSecao"
+                      id="CodNovaSecao"
+                      class="form-control NovaSecao"
+                      readonly
+                    />
+                    <div class="input-group-btn btnZoom" id="addSecao">
+                      <button class="btn btn-info">
+                        <span class="fluigicon fluigicon-search"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Descrição da Nova Seção</label>
+                  <input
+                    type="text"
+                    name="DesNovaSecao"
+                    id="DesNovaSecao"
+                    class="form-control NovaSecao"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Novo Gestor</label>
+                  <input
+                    type="hidden"
+                    name="codGestorDestino"
+                    id="codGestorDestino"
+                  />
+                  <input
+                    type="text"
+                    name="cpNovoGestor"
+                    id="cpNovoGestor"
+                    class="form-control NovaSecao"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row NovaSecao">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Código do Motivo da Mudança de Seção</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      name="txtCodMotivoSecao"
+                      id="txtCodMotivoSecao"
+                      class="form-control NovaSecao"
+                      readonly
+                    />
+                    <div class="input-group-btn btnZoom" id="addMotivoSecao">
+                      <button class="btn btn-info">
+                        <span class="fluigicon fluigicon-search"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Motivo da Mudança de Seção</label>
+                  <input
+                    type="text"
+                    name="txtMotivoSecao"
+                    id="txtMotivoSecao"
+                    class="form-control NovaSecao"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+            <h4 class="NovaFuncao">
+              <span
+                class="fluigicon fluigicon-pointer-right fluigicon-sm"
+              ></span>
+              Nova Função
+            </h4>
+            <div class="row NovaFuncao">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Código da Função Atual</label>
+                  <input
+                    type="text"
+                    name="txtCodFuncao"
+                    id="txtCodFuncao"
+                    class="form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Descrição da Função Atual</label>
+                  <input
+                    type="text"
+                    name="CargoCol"
+                    id="CargoCol"
+                    class="form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row NovaFuncao">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Código da Função Cargo</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      name="txtNovoCodFuncao"
+                      id="txtNovoCodFuncao"
+                      class="form-control NovaFuncao"
+                      readonly
+                    />
+                    <div class="input-group-btn btnZoom" id="addFuncao">
+                      <button class="btn btn-info">
+                        <span class="fluigicon fluigicon-search"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Descrição da Função Cargo</label>
+                  <input
+                    type="text"
+                    name="txtNovoFuncao"
+                    id="txtNovoFuncao"
+                    class="form-control NovaFuncao"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row NovaFuncao">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Código do Motivo da Mudança de Função</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      name="txtCodMotivoFuncao"
+                      id="txtCodMotivoFuncao"
+                      class="form-control NovaFuncao"
+                      readonly
+                    />
+                    <div class="input-group-btn btnZoom" id="addMotivoFuncao">
+                      <button class="btn btn-info">
+                        <span class="fluigicon fluigicon-search"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Motivo da Mudança de Função</label>
+                  <input
+                    type="text"
+                    name="txtMotivoFuncao"
+                    id="txtMotivoFuncao"
+                    class="form-control NovaFuncao"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+            <h4 class="NovoHorario">
+              <span
+                class="fluigicon fluigicon-pointer-right fluigicon-sm"
+              ></span>
+              Novo Horário
+            </h4>
+            <div class="row NovoHorario">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Código do Horário Atual</label>
+                  <input
+                    type="text"
+                    name="CodHorAtual"
+                    id="CodHorAtual"
+                    class="form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Descrição do Horário Atual</label>
+                  <input
+                    type="text"
+                    name="DescHoraAtual"
+                    id="DescHoraAtual"
+                    class="form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row NovoHorario">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Código do Novo Horário</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      name="CpNovoCodHorario"
+                      id="CpNovoCodHorario"
+                      class="form-control NovoHorario"
+                      readonly
+                    />
+                    <div class="input-group-btn btnZoom" id="addHorario">
+                      <button class="btn btn-info">
+                        <span class="fluigicon fluigicon-search"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Descrição do Novo Horário</label>
+                  <input
+                    type="text"
+                    name="CpNovoHorario"
+                    id="CpNovoHorario"
+                    class="form-control NovoHorario"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row NovoHorario">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Código do Novo Índice Horário</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      name="CpIndiceCodHorario"
+                      id="CpIndiceCodHorario"
+                      class="form-control NovoHorario"
+                      readonly
+                    />
+                    <div class="input-group-btn btnZoom" id="addIndHorario">
+                      <button class="btn btn-info">
+                        <span class="fluigicon fluigicon-search"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Descrição do Índice Horário</label>
+                  <input
+                    type="text"
+                    name="CpIndiceHorario"
+                    id="CpIndiceHorario"
+                    class="form-control NovoHorario"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+
+            <h4 class="NovoSindicato">
+              <span
+                class="fluigicon fluigicon-pointer-right fluigicon-sm NovoSindicato"
+              ></span>
+              Novo Sindicato
+            </h4>
+
+            <div class="row NovoSindicato">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Código do Sindicato Atual</label>
+                  <input
+                    type="text"
+                    name="txtCodSindicato"
+                    id="txtCodSindicato"
+                    class="form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Descrição do Sindicato Atual</label>
+                  <input
+                    type="text"
+                    name="DescSindAtual"
+                    id="DescSindAtual"
+                    class="form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row NovoSindicato">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Código do Novo Sindicato</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      name="TxtCodSind"
+                      id="TxtCodSind"
+                      class="form-control NovoSindicato"
+                      readonly
+                    />
+                    <div class="input-group-btn btnZoom" id="addSindicato">
+                      <button class="btn btn-info">
+                        <span class="fluigicon fluigicon-search"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Descrição do Novo Sindicato</label>
+                  <input
+                    type="text"
+                    name="CpSindicato"
+                    id="CpSindicato"
+                    class="form-control NovoSindicato"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+            <h4 class="NovoSalario">
+              <span
+                class="fluigicon fluigicon-pointer-right fluigicon-sm"
+              ></span>
+              Novo Salário
+            </h4>
+            <div class="row NovoSalario">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Salário Atual</label>
+                  <input
+                    type="text"
+                    name="Salario"
+                    id="Salario"
+                    class="form-control"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Novo Salário</label>
+                  <input
+                    type="text"
+                    name="NovoSalario"
+                    id="NovoSalario"
+                    class="form-control Valor NovoSalario"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row NovoSalario">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Código do Motivo da Mudança do Salário</label>
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      name="txtCodMotivoSalario"
+                      id="txtCodMotivoSalario"
+                      class="form-control NovoSalario"
+                      readonly
+                    />
+                    <div class="input-group-btn btnZoom" id="addMotivoSalario">
+                      <button class="btn btn-info">
+                        <span class="fluigicon fluigicon-search"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Motivo da Mudança de Salário</label>
+                  <input
+                    type="text"
+                    name="txtMotivoSalario"
+                    id="txtMotivoSalario"
+                    class="form-control NovoSalario"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Etapas do processo -->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <span class="fluigicon fluigicon-questions fluigicon-lg"></span>
+              Etapas do processo
+            </h3>
+          </div>
+          <div class="panel-body">
+            <input type="hidden" name="codGestorOrigem" id="codGestorOrigem" />
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div
+                    class="panel-title collapse-icon atividade-titulo"
+                    data-toggle="collapse"
+                    data-target="#panelAtividade_7"
+                  >
+                    Aprovação Gestor - Origem
+                  </div>
+                </div>
+                <div id="panelAtividade_7" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="labelField">Aprovador</label>
+                          <input
+                            type="text"
+                            name="cpRespGestor"
+                            id="cpRespGestor"
+                            class="form-control"
+                            readonly
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="labelField"
+                            >Aprova&ccedil;&atilde;o</label
+                          >
+                          <select
+                            name="cpAprovacaoGestor"
+                            id="cpAprovacaoGestor"
+                            class="form-control"
+                            aprovacao
+                            obrigatorio
+                          >
+                            <option value="">Selecione...</option>
+                            <option value="1">Aprovado</option>
+                            <option value="2">
+                              Reprovado - Com Pendências
+                            </option>
+                            <option value="3">Reprovado</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="labelField">Parecer</label>
+                          <textarea
+                            class="form-control"
+                            rows="3"
+                            name="cpParecercol"
+                            id="cpParecercol"
+                            parecer
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-group" style="display: none">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div
+                    class="panel-title collapse-icon atividade-titulo"
+                    data-toggle="collapse"
+                    data-target="#panelAtividade_111"
+                  >
+                    Aprovação Diretor - Origem
+                  </div>
+                </div>
+                <div id="panelAtividade_111" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="labelField">Aprovador</label>
+                          <input
+                            type="text"
+                            name="cpAprovDiretor"
+                            id="cpAprovDiretor"
+                            class="form-control"
+                            readonly
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="labelField"
+                            >Aprova&ccedil;&atilde;o</label
+                          >
+                          <select
+                            name="cpAprovDir"
+                            id="cpAprovDir"
+                            class="form-control"
+                            aprovacao
+                            obrigatorio
+                          >
+                            <option value="">Selecione...</option>
+                            <option value="1">Aprovado</option>
+                            <option value="2">
+                              Reprovado - Com Pendências
+                            </option>
+                            <option value="3">Reprovado</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="labelField">Parecer</label>
+                          <textarea
+                            class="form-control"
+                            rows="3"
+                            name="cpParecerDiretor"
+                            id="cpParecerDiretor"
+                            parecer
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-group">
+              <input
+                type="hidden"
+                name="codDiretorOrigem"
+                id="codDiretorOrigem"
+              />
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div
+                    class="panel-title collapse-icon atividade-titulo"
+                    data-toggle="collapse"
+                    data-target="#panelAtividade_8"
+                  >
+                    Aprovação Gestor - Destino
+                  </div>
+                </div>
+                <div id="panelAtividade_8" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="labelField">Aprovador</label>
+                          <input
+                            type="text"
+                            name="cpRespDiretor"
+                            id="cpRespDiretor"
+                            class="form-control"
+                            readonly
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="labelField"
+                            >Aprova&ccedil;&atilde;o</label
+                          >
+                          <select
+                            name="cpAprovacaoDiretor"
+                            id="cpAprovacaoDiretor"
+                            class="form-control"
+                            aprovacao
+                            obrigatorio
+                          >
+                            <option value="">Selecione...</option>
+                            <option value="1">Aprovado</option>
+                            <option value="2">
+                              Reprovado - Com Pendências
+                            </option>
+                            <option value="3">Reprovado</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="labelField">Parecer</label>
+                          <textarea
+                            class="form-control"
+                            rows="3"
+                            name="cpParecerAprovaDiretor"
+                            id="cpParecerAprovaDiretor"
+                            parecer
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div
+                    class="panel-title collapse-icon atividade-titulo"
+                    data-toggle="collapse"
+                    data-target="#panelAtividade_74"
+                  >
+                    Folha RH
+                  </div>
+                </div>
+                <div id="panelAtividade_74" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="labelField">Aprovador</label>
+                          <input
+                            type="text"
+                            name="cpRespRH"
+                            id="cpRespRH"
+                            class="form-control"
+                            readonly
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="labelField"
+                            >Aprova&ccedil;&atilde;o</label
+                          >
+                          <select
+                            name="cpAprovacaoRH"
+                            id="cpAprovacaoRH"
+                            class="form-control"
+                            aprovacao
+                            obrigatorio
+                          >
+                            <option value="">Selecione...</option>
+                            <option value="1">Aprovado</option>
+                            <option value="2">
+                              Reprovado - Com Pendências
+                            </option>
+                            <option value="3">Reprovado</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="labelField">Parecer</label>
+                          <textarea
+                            class="form-control"
+                            rows="3"
+                            name="cpParecerAprovaRH"
+                            id="cpParecerAprovaRH"
+                            parecer
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div
+                    class="panel-title collapse-icon atividade-titulo"
+                    data-toggle="collapse"
+                    data-target="#panelAtividade_106"
+                  >
+                    Analista BPO
+                  </div>
+                </div>
+                <div id="panelAtividade_106" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="labelField">Aprovador</label>
+                          <input
+                            type="text"
+                            name="cpAnalistaBPO"
+                            id="cpAnalistaBPO"
+                            class="form-control"
+                            readonly
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="labelField">Parecer</label>
+                          <textarea
+                            class="form-control"
+                            rows="3"
+                            name="cpParecerBPO"
+                            id="cpParecerBPO"
+                            parecer
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Etapas do processo -->
+      </form>
+    </div>
+    <!-- scrpts essenciais - DEVE CONTER EM TODOS OS FORMS -->
+    <script
+      type="text/javascript"
+      src="/portal/resources/js/jquery/jquery.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/webdesk/vcXMLRPC.js"
+      charset="utf-8"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/portal/resources/js/jquery/jquery-ui.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/portal/resources/js/mustache/mustache-min.js"
+    ></script>
+    <script type="text/javascript" src="jquery.mask.min.js"></script>
+    <script type="text/javascript" src="jquery.timepicker.min.js"></script>
+    <script type="text/javascript" src="jquery-ui.js"></script>
+    <script
+      type="text/javascript"
+      src="/portal/resources/style-guide/js/fluig-style-guide.min.js"
+      charset="utf-8"
+    ></script>
+    <script type="text/javascript" src="zoom.js" charset="utf-8"></script>
+    <script
+      type="text/javascript"
+      src="compartilhados.js"
+      charset="utf-8"
+    ></script>
+    <!-- scrpts essenciais - DEVE CONTER EM TODOS OS FORMS -->
+    <script type="text/javascript" src="view.js"></script>
+    <script type="text/javascript" src="dal.js"></script>
+    <script type="text/javascript" src="jquery.maskMoney.min.js"></script>
+    <script type="text/javascript" src="jquery-ui-Data.js"></script>
+    <script type="text/javascript" src="jquery-uiData2.js"></script>
+  </body>
+</html>

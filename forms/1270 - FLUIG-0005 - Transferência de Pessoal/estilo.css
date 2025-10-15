@@ -1,0 +1,20 @@
+table td 
+{
+	border-top: none !important;
+}
+         
+.buttonZoom {
+	height:34px;
+}
+
+.CampoObrigatorio
+{
+	color: red;
+}
+
+.LinkManual 
+{
+	color: #5bc0de !important;
+}
+
+.ui-datepicker-trigger { display: none; }
