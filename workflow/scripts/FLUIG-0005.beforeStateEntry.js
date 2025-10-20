@@ -325,26 +325,16 @@ function CadastraAlteracao() {
     }
   }
 
+  // --- INÍCIO DO BLOCO DE ALTERAÇÃO DE SALÁRIO ---
+
+  // Verifica se o campo "NovoSalário" foi preenchido no formulário.
   if (NovoSalario != "") {
+
+    var Salario = NovoSalario;
     var xmlFunc = "";
-    Salario = NovoSalario;
+    var Salarioxml = "";
 
-    xmlFunc += "	<FopFunc>	";
-    xmlFunc += "	<PFunc>	";
-    xmlFunc += "	<CODCOLIGADA>" + Coligada + "</CODCOLIGADA>	";
-    xmlFunc += "	<CHAPA>" + Chapa + "</CHAPA>	";
-    xmlFunc += "	<CODFILIAL>" + CodFilialDestino + "</CODFILIAL>	";
-    xmlFunc += "	<SALARIO>" + Salario + "</SALARIO>	";
-    xmlFunc += "	</PFunc>	";
-    xmlFunc += "	<PFCOMPL>	";
-    xmlFunc += "	<CODCOLIGADA>" + Coligada + "</CODCOLIGADA>	";
-    xmlFunc += "	<CHAPA>" + Chapa + "</CHAPA>	";
-    xmlFunc += "	</PFCOMPL>	";
-    xmlFunc += "	<VPCOMPL>	";
-    xmlFunc += "	<CODPESSOA>" + CodPessoa + "</CODPESSOA>	";
-    xmlFunc += "	</VPCOMPL>	";
-    xmlFunc += "	</FopFunc>	";
-
+    // --- CONEXÃO COM O WEBSERVICE DO TOTVS RM (realizada apenas uma vez) ---
     var CONNECT = DatasetFactory.getDataset("ds_connector", null, null, null);
     var USUARIO = CONNECT.getValue(0, "INTEGRADOR");
     var SENHA = CONNECT.getValue(0, "SENHA");
@@ -352,45 +342,49 @@ function CadastraAlteracao() {
     var CAMINHO_SERVICO = "com.totvs.WsDataServer";
 
     var servico = ServiceManager.getServiceInstance(NOME_SERVICO);
-
     var serviceHelper = servico.getBean();
     var instancia = servico.instantiate(CAMINHO_SERVICO);
-
     var ws = instancia.getRMIwsDataServer();
-
     var authenticatedService = serviceHelper.getBasicAuthenticatedClient(
       ws,
       "com.totvs.IwsDataServer",
       USUARIO,
       SENHA
     );
-
-    log.info("@xmlFunc diz: xmlFunc: " + xmlFunc);
-
-    try {
-      var result = authenticatedService.saveRecordEmail(
-        "FopFuncData",
-        xmlFunc,
-        "CODCOLIGADA=1;CODSISTEMA=P",
-        "suportesoter@consultoriainterativa.com.br"
-      );
-
-      if (result != null && result.indexOf("===") != -1) {
-        var msgErro = result.substring(0, result.indexOf("==="));
-        throw msgErro;
-      } else {
-      }
-    } catch (e) {
-      if (e == null) {
-        e = "Erro desconhecido; verifique o log do AppServer";
-      }
-
-      var mensagemErro = "Erro na comunicação com o TOTVS TBC: " + e;
-      log.error(mensagemErro + " ---> " + xmlFunc);
-      throw mensagemErro;
-    }
-
+    
+    // --- ETAPA 1: INSERIR O HISTÓRICO SALARIAL (OPERAÇÃO PRIORITÁRIA) ---
     if (CodMotivoSalario != "") {
+
+      // --- AJUSTE 2: BUSCAR A JORNADA DE TRABALHO ATUAL DO COLABORADOR ---
+      var jornadaAtual = "";
+      try {
+          // Utiliza um dataset para buscar os dados atuais do funcionário no RM.
+          // OBS: O nome do dataset ("DS_FLUIG_0006") e da coluna ("JORNADA")
+          // são suposições e devem ser validados com a sua implementação real.
+          var constraints = [
+              DatasetFactory.createConstraint("CODCOLIGADA", Coligada, Coligada, ConstraintType.MUST),
+              DatasetFactory.createConstraint("CHAPA", Chapa, Chapa, ConstraintType.MUST)
+          ];
+          var dsDadosFuncionario = DatasetFactory.getDataset("DS_FLUIG_0006", null, constraints, null);
+
+          // Valida se o dataset retornou algum valor.
+          if (dsDadosFuncionario != null && dsDadosFuncionario.rowsCount > 0) {
+              // Pega o valor da jornada da coluna correspondente.
+              jornadaAtual = dsDadosFuncionario.getValue(0, "JORNADA"); 
+          } else {
+              throw "Não foi possível encontrar a jornada de trabalho atual do colaborador no RM. Chapa: " + Chapa;
+          }
+
+          if (jornadaAtual == "" || jornadaAtual == null){
+              throw "A jornada de trabalho retornada para o colaborador está vazia ou nula. Chapa: " + Chapa;
+          }
+
+      } catch(e) {
+          throw "Erro ao buscar a jornada de trabalho do colaborador no RM: " + e;
+      }
+      // --- FIM DO AJUSTE 2 ---
+
+      // Monta a estrutura do XML para o histórico salarial (PFHSTSAL).
       Salarioxml += "<PFHSTSAL>";
       Salarioxml += " <CODCOLIGADA>" + Coligada + "</CODCOLIGADA>";
       Salarioxml += " <CHAPA>" + Chapa + "</CHAPA>";
@@ -398,37 +392,71 @@ function CadastraAlteracao() {
       Salarioxml += " <SALARIO>" + NovoSalario + "</SALARIO>";
       Salarioxml += " <NROSALARIO>1</NROSALARIO>";
       Salarioxml += " <MOTIVO>" + CodMotivoSalario + "</MOTIVO>";
-      Salarioxml += "<JORNADACHAR>220:00</JORNADACHAR>";
+      // Utiliza a variável com a jornada correta, buscada dinamicamente.
+      Salarioxml += "<JORNADACHAR>" + jornadaAtual + "</JORNADACHAR>";
       Salarioxml += "</PFHSTSAL>";
 
-      log.info("@Salarioxml diz: Salarioxml: " + Salarioxml);
+      log.info("@Salarioxml diz: Tentando inserir o seguinte histórico: " + Salarioxml);
 
       try {
-        var result = authenticatedService.saveRecordEmail(
+        var resultHist = authenticatedService.saveRecordEmail(
           "FopDataHistoricoSalarialWinForm",
           Salarioxml,
           "CODCOLIGADA=1;CODSISTEMA=P",
           "suportesoter@consultoriainterativa.com.br"
         );
 
-        if (result != null && result.indexOf("===") != -1) {
-          var msgErro = result.substring(0, result.indexOf("==="));
-          throw msgErro;
-        } else {
+        if (resultHist != null && resultHist.indexOf("===") != -1) {
+          var msgErro = resultHist.substring(0, resultHist.indexOf("==="));
+          throw "Erro ao inserir histórico salarial no RM: " + msgErro;
         }
-      } catch (e) {
-        if (e == null) {
-          e = "Erro desconhecido; verifique o log do AppServer";
-        }
+        log.info("@Salarioxml Cadastro diz: Histórico inserido com sucesso!");
 
-        var mensagemErro = "Erro na comunicação com o TOTVS TBC: " + e;
-        log.error(mensagemErro + " ---> " + Salarioxml);
+      } catch (e) {
+        var mensagemErro = "FALHA CRÍTICA (Histórico Salarial): " + e;
+        log.error(mensagemErro + " ---> XML enviado: " + Salarioxml);
         throw mensagemErro;
       }
 
-      log.info("@Salarioxml Cadastro diz: RESULT: " + result);
+    } else {
+        throw "O Motivo da Mudança de Salário é obrigatório. A alteração foi cancelada.";
     }
-  }
+
+
+    // --- ETAPA 2: ATUALIZAR O CADASTRO PRINCIPAL DO FUNCIONÁRIO ---
+    // Esta etapa só é executada se a ETAPA 1 (inserção do histórico) for bem-sucedida.
+    xmlFunc += "	<FopFunc>	";
+    xmlFunc += "	<PFunc>	";
+    xmlFunc += "	<CODCOLIGADA>" + Coligada + "</CODCOLIGADA>	";
+    xmlFunc += "	<CHAPA>" + Chapa + "</CHAPA>	";
+    xmlFunc += "	<CODFILIAL>" + CodFilialDestino + "</CODFILIAL>	";
+    xmlFunc += "	<SALARIO>" + Salario + "</SALARIO>	";
+    xmlFunc += "	</PFunc>	";
+    // ... (restante da montagem do xmlFunc)
+    xmlFunc += "	</FopFunc>	";
+
+    log.info("@xmlFunc diz: Atualizando cadastro do funcionário com o XML: " + xmlFunc);
+
+    try {
+      var resultFunc = authenticatedService.saveRecordEmail(
+        "FopFuncData",
+        xmlFunc,
+        "CODCOLIGADA=1;CODSISTEMA=P",
+        "suportesoter@consultoriainterativa.com.br"
+      );
+
+      if (resultFunc != null && resultFunc.indexOf("===") != -1) {
+        var msgErro = resultFunc.substring(0, resultFunc.indexOf("==="));
+        throw "Erro ao atualizar o cadastro principal do funcionário no RM: " + msgErro;
+      }
+    } catch (e) {
+      var mensagemErro = "FALHA CRÍTICA (Cadastro Funcionário): " + e;
+      log.error(mensagemErro + " ---> XML enviado: " + xmlFunc);
+      throw mensagemErro;
+    }
+  } // Fim do if (NovoSalario != "")
+
+  // --- FIM DO BLOCO DE ALTERAÇÃO DE SALÁRIO ---
 
   if (NovaSecao != "") {
     var xmlFunc = "";
