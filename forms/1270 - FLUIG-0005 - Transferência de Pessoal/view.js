@@ -335,32 +335,33 @@ function ZoomBuscaCol() {
   ZoomCol.Renderizado = false;
 
   ZoomCol.Colunas = [
-    { title: "CHAPA", name: "CHAPA" },
+    { title: "CHAPA", name: "CHAPA" }, //0
     { title: "NOME", name: "NOME" },
-    { title: "CARGO", name: "CARGO" },
+    { title: "CARGO", name: "CARGO" }, // 2
     { title: "DATAADMISSAO", name: "DATAADMISSAO", display: false },
-    { title: "UF_COLIGADA", name: "UF_COLIGADA", display: false },
+    { title: "UF_COLIGADA", name: "UF_COLIGADA", display: false }, //4
     { title: "CODFUNCAO", name: "CODFUNCAO", display: false },
-    { title: "CODSITUACAO", name: "CODSITUACAO", display: false },
+    { title: "CODSITUACAO", name: "CODSITUACAO", display: false }, // 6
     { title: "CODSECAO", name: "CODSECAO", display: false },
-    { title: "FIMPRAZOCONTR", name: "FIMPRAZOCONTR", display: false },
+    { title: "FIMPRAZOCONTR", name: "FIMPRAZOCONTR", display: false }, // 8
     { title: "CODPESSOA", name: "CODPESSOA", display: false },
-    { title: "SALARIO", name: "SALARIO", display: false },
+    { title: "SALARIO", name: "SALARIO", display: false }, //10
     { title: "DATALIMITEFER", name: "DATALIMITEFER", display: false },
-    { title: "CODSINDICATO", name: "CODSINDICATO", display: false },
+    { title: "CODSINDICATO", name: "CODSINDICATO", display: false }, //12
     { title: "MEMBROCIPA", name: "MEMBROCIPA", display: false },
-    { title: "CODTIPO", name: "CODTIPO", display: false },
+    { title: "CODTIPO", name: "CODTIPO", display: false }, // 14
     { title: "CODCATEGORIA", name: "CODCATEGORIA", display: false },
-    { title: "TEMPRAZOCONTR", name: "TEMPRAZOCONTR", display: false },
+    { title: "TEMPRAZOCONTR", name: "TEMPRAZOCONTR", display: false }, //16
     { title: "FIMPRAZOCONTR", name: "FIMPRAZOCONTR", display: false },
-    { title: "NROFICHAREG", name: "NROFICHAREG", display: false },
+    { title: "NROFICHAREG", name: "NROFICHAREG", display: false }, // 18
     { title: "CODRECEBIMENTO", name: "CODRECEBIMENTO", display: false },
-    { title: "SALARIO", name: "SALARIO", display: false },
+    { title: "SALARIO", name: "SALARIO", display: false }, // 20
     { title: "HORARIO", name: "HORARIO", display: false },
-    { title: "CODHORARIO", name: "CODHORARIO", display: false },
+    { title: "CODHORARIO", name: "CODHORARIO", display: false }, // 22
     { title: "SINDICATO", name: "SINDICATO", display: false },
-    { title: "CODSINDICATO", name: "CODSINDICATO", display: false },
+    { title: "CODSINDICATO", name: "CODSINDICATO", display: false }, // 24
     { title: "INDINICIOHOR", name: "INDINICIOHOR", display: false },
+    { title: "JORNADAMENSAL", name: "JORNADAMENSAL", display: false }, //26
   ];
 
   ZoomCol.Retorno = function (retorno) {
@@ -376,6 +377,7 @@ function ZoomBuscaCol() {
     $("#txtDtAdm").val(retorno[3]);
     $("#txtCodSindicato").val(retorno[12]);
     $("#txtMembCipaCod").val(retorno[13]);
+    $("#cpJornadaMensal").val(retorno[26]); // jornada mensal
     $("#CodTipo").val(retorno[14]);
     $("#CodCategoria").val(retorno[15]);
     $("#txtSalOrigem").val(retorno[10]);

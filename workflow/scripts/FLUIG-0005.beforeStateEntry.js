@@ -45,6 +45,10 @@ function CadastraAlteracao() {
   var CodMotivoSalario = hAPI.getCardValue("txtCodMotivoSalario");
   var CodMotivoSecao = hAPI.getCardValue("txtCodMotivoSecao");
   var CodFilialDestino = hAPI.getCardValue("CodFilialDestino");
+  var JornadaMensal = hAPI.getCardValue("cpJornadaMensal");
+
+  
+  
 
   var DataMudanca = hAPI.getCardValue("DataMudanca");
   if (DataMudanca != "") {
@@ -351,38 +355,9 @@ function CadastraAlteracao() {
       USUARIO,
       SENHA
     );
-    
+
     // --- ETAPA 1: INSERIR O HISTÓRICO SALARIAL (OPERAÇÃO PRIORITÁRIA) ---
     if (CodMotivoSalario != "") {
-
-      // --- AJUSTE 2: BUSCAR A JORNADA DE TRABALHO ATUAL DO COLABORADOR ---
-      var jornadaAtual = "";
-      try {
-          // Utiliza um dataset para buscar os dados atuais do funcionário no RM.
-          // OBS: O nome do dataset ("DS_FLUIG_0006") e da coluna ("JORNADA")
-          // são suposições e devem ser validados com a sua implementação real.
-          var constraints = [
-              DatasetFactory.createConstraint("CODCOLIGADA", Coligada, Coligada, ConstraintType.MUST),
-              DatasetFactory.createConstraint("CHAPA", Chapa, Chapa, ConstraintType.MUST)
-          ];
-          var dsDadosFuncionario = DatasetFactory.getDataset("DS_FLUIG_0006", null, constraints, null);
-
-          // Valida se o dataset retornou algum valor.
-          if (dsDadosFuncionario != null && dsDadosFuncionario.rowsCount > 0) {
-              // Pega o valor da jornada da coluna correspondente.
-              jornadaAtual = dsDadosFuncionario.getValue(0, "JORNADA"); 
-          } else {
-              throw "Não foi possível encontrar a jornada de trabalho atual do colaborador no RM. Chapa: " + Chapa;
-          }
-
-          if (jornadaAtual == "" || jornadaAtual == null){
-              throw "A jornada de trabalho retornada para o colaborador está vazia ou nula. Chapa: " + Chapa;
-          }
-
-      } catch(e) {
-          throw "Erro ao buscar a jornada de trabalho do colaborador no RM: " + e;
-      }
-      // --- FIM DO AJUSTE 2 ---
 
       // Monta a estrutura do XML para o histórico salarial (PFHSTSAL).
       Salarioxml += "<PFHSTSAL>";
@@ -392,8 +367,8 @@ function CadastraAlteracao() {
       Salarioxml += " <SALARIO>" + NovoSalario + "</SALARIO>";
       Salarioxml += " <NROSALARIO>1</NROSALARIO>";
       Salarioxml += " <MOTIVO>" + CodMotivoSalario + "</MOTIVO>";
-      // Utiliza a variável com a jornada correta, buscada dinamicamente.
-      Salarioxml += "<JORNADACHAR>" + jornadaAtual + "</JORNADACHAR>";
+      // Utiliza a variável 'JornadaMensal' preenchida no formulário.
+      Salarioxml += "<JORNADACHAR>" + JornadaMensal + "</JORNADACHAR>";
       Salarioxml += "</PFHSTSAL>";
 
       log.info("@Salarioxml diz: Tentando inserir o seguinte histórico: " + Salarioxml);
@@ -419,7 +394,7 @@ function CadastraAlteracao() {
       }
 
     } else {
-        throw "O Motivo da Mudança de Salário é obrigatório. A alteração foi cancelada.";
+      throw "O Motivo da Mudança de Salário é obrigatório. A alteração foi cancelada.";
     }
 
 
@@ -432,7 +407,13 @@ function CadastraAlteracao() {
     xmlFunc += "	<CODFILIAL>" + CodFilialDestino + "</CODFILIAL>	";
     xmlFunc += "	<SALARIO>" + Salario + "</SALARIO>	";
     xmlFunc += "	</PFunc>	";
-    // ... (restante da montagem do xmlFunc)
+    xmlFunc += "	<PFCOMPL>	";
+    xmlFunc += "	<CODCOLIGADA>" + Coligada + "</CODCOLIGADA>	";
+    xmlFunc += "	<CHAPA>" + Chapa + "</CHAPA>	";
+    xmlFunc += "	</PFCOMPL>	";
+    xmlFunc += "	<VPCOMPL>	";
+    xmlFunc += "	<CODPESSOA>" + CodPessoa + "</CODPESSOA>	";
+    xmlFunc += "	</VPCOMPL>	";
     xmlFunc += "	</FopFunc>	";
 
     log.info("@xmlFunc diz: Atualizando cadastro do funcionário com o XML: " + xmlFunc);
