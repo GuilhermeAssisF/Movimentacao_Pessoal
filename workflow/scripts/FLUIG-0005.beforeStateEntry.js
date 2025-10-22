@@ -368,7 +368,8 @@ function CadastraAlteracao() {
       Salarioxml += " <NROSALARIO>1</NROSALARIO>";
       Salarioxml += " <MOTIVO>" + CodMotivoSalario + "</MOTIVO>";
       // Utiliza a variável 'JornadaMensal' preenchida no formulário.
-      Salarioxml += "<JORNADACHAR>" + JornadaMensal + "</JORNADACHAR>";
+      Salarioxml += "<JORNADACHAR>" + (JornadaMensal/60) + "</JORNADACHAR>";
+      // Salarioxml += "<JORNADA>" + JornadaMensal + "</JORNADA>";
       Salarioxml += "</PFHSTSAL>";
 
       log.info("@Salarioxml diz: Tentando inserir o seguinte histórico: " + Salarioxml);
