@@ -392,6 +392,50 @@ function ZoomBuscaCol() {
     $("#DescHoraAtual").val(retorno[21]);
     $("#CodHorAtual").val(retorno[22]);
     $("#IndiceAtual").val(retorno[25]);
+
+    /* =================================================
+      == INÍCIO DA NOVA LÓGICA DE CONVERSÃO (CLIENT-SIDE) ==
+      =================================================
+    */
+    try {
+      var totalMinutes = parseInt(retorno[26], 10);
+      var jornadaFormatada = "000:00"; // Valor padrão
+
+      if (!isNaN(totalMinutes)) { // Se for um número válido
+        
+        var hours = Math.floor(totalMinutes / 60);
+        var minutes = totalMinutes % 60;
+
+        // Formata para HHH (ex: "008" ou "220")
+        var hoursStr = String(hours);
+        while (hoursStr.length < 3) {
+          hoursStr = "0" + hoursStr;
+        }
+
+        // Formata para MM (ex: "05" ou "30")
+        var minutesStr = String(minutes);
+        while (minutesStr.length < 2) {
+          minutesStr = "0" + minutesStr;
+        }
+        
+        jornadaFormatada = hoursStr + ":" + minutesStr;
+      }
+      
+      // 1. Popula o novo campo oculto
+      $("#cpJornadaFormatada").val(jornadaFormatada);
+      
+      // 2. Log para você depurar no F12 (como você queria)
+      console.log("Jornada em Minutos (do Zoom):", totalMinutes);
+      console.log("Jornada Formatada (HHH:MM):", jornadaFormatada);
+
+    } catch(e) {
+      console.error("Erro ao formatar jornada no view.js:", e);
+      $("#cpJornadaFormatada").val("000:00"); // Salva um valor de fallback em caso de erro
+    }
+    /* =================================================
+      == FIM DA NOVA LÓGICA DE CONVERSÃO ==
+      =================================================
+    */
   };
 
   return ZoomCol;

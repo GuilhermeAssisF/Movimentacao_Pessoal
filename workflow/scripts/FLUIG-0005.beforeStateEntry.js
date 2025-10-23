@@ -47,9 +47,6 @@ function CadastraAlteracao() {
   var CodFilialDestino = hAPI.getCardValue("CodFilialDestino");
   var JornadaMensal = hAPI.getCardValue("cpJornadaMensal");
 
-  
-  
-
   var DataMudanca = hAPI.getCardValue("DataMudanca");
   if (DataMudanca != "") {
     var DtadmForm = formatoInput.parse(DataMudanca);
@@ -335,6 +332,14 @@ function CadastraAlteracao() {
   if (NovoSalario != "") {
 
     var Salario = NovoSalario;
+    var jornadaFormatadaDoForm = hAPI.getCardValue("cpJornadaFormatada"); // <-- LÊ O NOVO CAMPO
+
+    // Se o campo estiver vazio por algum motivo, define um padrão
+    if (jornadaFormatadaDoForm == null || jornadaFormatadaDoForm == "") {
+      jornadaFormatadaDoForm = "000:00";
+      log.warn("FLUIG-0005 - Campo cpJornadaFormatada estava vazio! Usando valor padrão '000:00'.");
+    }
+
     var xmlFunc = "";
     var Salarioxml = "";
 
@@ -367,8 +372,7 @@ function CadastraAlteracao() {
       Salarioxml += " <SALARIO>" + NovoSalario + "</SALARIO>";
       Salarioxml += " <NROSALARIO>1</NROSALARIO>";
       Salarioxml += " <MOTIVO>" + CodMotivoSalario + "</MOTIVO>";
-      // Utiliza a variável 'JornadaMensal' preenchida no formulário.
-      Salarioxml += "<JORNADACHAR>" + (JornadaMensal/60) + "</JORNADACHAR>";
+      Salarioxml += "<JORNADACHAR>" + jornadaFormatadaDoForm + "</JORNADACHAR>";
       // Salarioxml += "<JORNADA>" + JornadaMensal + "</JORNADA>";
       Salarioxml += "</PFHSTSAL>";
 
