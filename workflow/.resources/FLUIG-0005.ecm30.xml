@@ -29,7 +29,7 @@
     <processDefinitionVersionPK>
       <companyId>1</companyId>
       <processId>Movimentação de Pessoal </processId>
-      <version>59</version>
+      <version>61</version>
     </processDefinitionVersionPK>
     <versionDescription></versionDescription>
     <formId>1270</formId>
@@ -1929,7 +1929,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>1</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>5</sequence>
       </conditionProcessStatePK>
       <condition>Abertura()==&quot;GO&quot;</condition>
@@ -1941,7 +1941,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>2</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>5</sequence>
       </conditionProcessStatePK>
       <condition>Abertura()==&quot;DO&quot;</condition>
@@ -1953,7 +1953,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>3</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>5</sequence>
       </conditionProcessStatePK>
       <condition>Abertura()==&quot;GD&quot;</condition>
@@ -1965,7 +1965,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>4</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>5</sequence>
       </conditionProcessStatePK>
       <condition>Abertura()==&quot;RH&quot;</condition>
@@ -1977,7 +1977,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>1</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>26</sequence>
       </conditionProcessStatePK>
       <condition>Gestor()==&quot;DO&quot;</condition>
@@ -1989,7 +1989,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>2</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>26</sequence>
       </conditionProcessStatePK>
       <condition>Gestor()==&quot;GD&quot;</condition>
@@ -2001,7 +2001,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>3</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>26</sequence>
       </conditionProcessStatePK>
       <condition>Gestor()==&quot;RH&quot;</condition>
@@ -2013,7 +2013,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>4</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>26</sequence>
       </conditionProcessStatePK>
       <condition>Gestor()==&quot;CO&quot;</condition>
@@ -2025,7 +2025,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>5</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>26</sequence>
       </conditionProcessStatePK>
       <condition>Gestor()==&quot;RE&quot;</condition>
@@ -2037,7 +2037,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>1</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>44</sequence>
       </conditionProcessStatePK>
       <condition>hAPI.getCardValue(&apos;cpReaberturaChamado&apos;)==&quot;1&quot;  </condition>
@@ -2049,7 +2049,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>2</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>44</sequence>
       </conditionProcessStatePK>
       <condition>hAPI.getCardValue(&apos;cpReaberturaChamado&apos;)==&quot;2&quot;  </condition>
@@ -2061,7 +2061,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>1</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>53</sequence>
       </conditionProcessStatePK>
       <condition>GestorDestino() == &quot;RE&quot;</condition>
@@ -2073,7 +2073,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>2</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>53</sequence>
       </conditionProcessStatePK>
       <condition>GestorDestino() == &quot;CO&quot;</condition>
@@ -2085,7 +2085,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>3</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>53</sequence>
       </conditionProcessStatePK>
       <condition>GestorDestino() == &quot;RH&quot;</condition>
@@ -2097,7 +2097,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>1</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>79</sequence>
       </conditionProcessStatePK>
       <condition>hAPI.getCardValue(&apos;cpAprovacaoRH&apos;)==&quot;1&quot;</condition>
@@ -2109,7 +2109,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>2</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>79</sequence>
       </conditionProcessStatePK>
       <condition>hAPI.getCardValue(&apos;cpAprovacaoRH&apos;)==&quot;2&quot;</condition>
@@ -2121,7 +2121,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>3</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>79</sequence>
       </conditionProcessStatePK>
       <condition>hAPI.getCardValue(&apos;cpAprovacaoRH&apos;)==&quot;3&quot;</condition>
@@ -2133,7 +2133,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>1</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>112</sequence>
       </conditionProcessStatePK>
       <condition>hAPI.getCardValue(&apos;cpAprovDir&apos;)==&quot;1&quot; &#xd;
@@ -2146,7 +2146,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>2</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>112</sequence>
       </conditionProcessStatePK>
       <condition>hAPI.getCardValue(&apos;cpAprovDir&apos;)==&quot;2&quot;</condition>
@@ -2158,7 +2158,7 @@
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
         <expressionOrder>3</expressionOrder>
-        <version>59</version>
+        <version>61</version>
         <sequence>112</sequence>
       </conditionProcessStatePK>
       <condition>hAPI.getCardValue(&apos;cpAprovDir&apos;)==&quot;3&quot;</condition>
@@ -3496,8 +3496,6 @@ function CadastraAlteracao() {&#xd;
   var CodFilialDestino = hAPI.getCardValue(&quot;CodFilialDestino&quot;);&#xd;
   var JornadaMensal = hAPI.getCardValue(&quot;cpJornadaMensal&quot;);&#xd;
 &#xd;
-  &#xd;
-&#xd;
   var DataMudanca = hAPI.getCardValue(&quot;DataMudanca&quot;);&#xd;
   if (DataMudanca != &quot;&quot;) {&#xd;
     var DtadmForm = formatoInput.parse(DataMudanca);&#xd;
@@ -3783,6 +3781,14 @@ function CadastraAlteracao() {&#xd;
   if (NovoSalario != &quot;&quot;) {&#xd;
 &#xd;
     var Salario = NovoSalario;&#xd;
+    var jornadaFormatadaDoForm = hAPI.getCardValue(&quot;cpJornadaFormatada&quot;); // &lt;-- LÊ O NOVO CAMPO&#xd;
+&#xd;
+    // Se o campo estiver vazio por algum motivo, define um padrão&#xd;
+    if (jornadaFormatadaDoForm == null || jornadaFormatadaDoForm == &quot;&quot;) {&#xd;
+      jornadaFormatadaDoForm = &quot;000:00&quot;;&#xd;
+      log.warn(&quot;FLUIG-0005 - Campo cpJornadaFormatada estava vazio! Usando valor padrão &apos;000:00&apos;.&quot;);&#xd;
+    }&#xd;
+&#xd;
     var xmlFunc = &quot;&quot;;&#xd;
     var Salarioxml = &quot;&quot;;&#xd;
 &#xd;
@@ -3815,8 +3821,8 @@ function CadastraAlteracao() {&#xd;
       Salarioxml += &quot; &lt;SALARIO&gt;&quot; + NovoSalario + &quot;&lt;/SALARIO&gt;&quot;;&#xd;
       Salarioxml += &quot; &lt;NROSALARIO&gt;1&lt;/NROSALARIO&gt;&quot;;&#xd;
       Salarioxml += &quot; &lt;MOTIVO&gt;&quot; + CodMotivoSalario + &quot;&lt;/MOTIVO&gt;&quot;;&#xd;
-      // Utiliza a variável &apos;JornadaMensal&apos; preenchida no formulário.&#xd;
-      Salarioxml += &quot;&lt;JORNADACHAR&gt;&quot; + JornadaMensal + &quot;&lt;/JORNADACHAR&gt;&quot;;&#xd;
+      Salarioxml += &quot;&lt;JORNADACHAR&gt;&quot; + jornadaFormatadaDoForm + &quot;&lt;/JORNADACHAR&gt;&quot;;&#xd;
+      // Salarioxml += &quot;&lt;JORNADA&gt;&quot; + JornadaMensal + &quot;&lt;/JORNADA&gt;&quot;;&#xd;
       Salarioxml += &quot;&lt;/PFHSTSAL&gt;&quot;;&#xd;
 &#xd;
       log.info(&quot;@Salarioxml diz: Tentando inserir o seguinte histórico: &quot; + Salarioxml);&#xd;
@@ -4577,7 +4583,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>6</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4588,7 +4594,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>10</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4599,7 +4605,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>14</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4610,7 +4616,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>31</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4621,7 +4627,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>32</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4632,7 +4638,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>34</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4643,7 +4649,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>46</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4654,7 +4660,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>47</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4665,7 +4671,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>56</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4676,7 +4682,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>58</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4687,7 +4693,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>77</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4698,7 +4704,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>84</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4709,7 +4715,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>92</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4720,7 +4726,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>96</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4731,7 +4737,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>102</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4742,7 +4748,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>128</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4753,7 +4759,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>130</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4764,7 +4770,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>134</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4775,7 +4781,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>138</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
@@ -4786,7 +4792,7 @@ function CadastraAlteracao() {&#xd;
       <processLinkBendPK>
         <companyId>1</companyId>
         <processId>FLUIG-0005</processId>
-        <version>59</version>
+        <version>61</version>
         <linkSequence>144</linkSequence>
         <bendSequence>1</bendSequence>
       </processLinkBendPK>
